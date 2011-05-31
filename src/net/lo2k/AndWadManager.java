@@ -1,10 +1,18 @@
 package net.lo2k;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.lang.reflect.Type;
+import java.net.URI;
 import java.util.List;
 
 import models.Operation;
-import net.lo2k.RestClient.RequestMethod;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,28 +41,46 @@ public class AndWadManager extends Activity {
 		});
     }
 
+    public InputStream getJSONData(String url){
+        DefaultHttpClient httpClient = new DefaultHttpClient();
+        URI uri;
+        InputStream data = null;
+        try {
+            uri = new URI(url);
+            HttpGet method = new HttpGet(uri);
+            HttpResponse response = httpClient.execute(method);
+            data = response.getEntity().getContent();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return data;
+    }
+    
 	protected void request() {
-		RestClient client = new RestClient("http://wadmanager.lo2k.net/remote/bank/1");
-		client.AddParam("accountType", "GOOGLE");
-		client.AddParam("source", "tboda-widgalytics-0.1");
+		//RestClient client = new RestClient("http://wadmanager.lo2k.net/remote/bank/1");
+		//RestClient client = new RestClient("http://www.lo2k.net");
+		//client.AddParam("accountType", "GOOGLE");
+		//client.AddParam("source", "tboda-widgalytics-0.1");
 		//client.AddParam("Email", _username);
 		//client.AddParam("Passwd", _password);
-		client.AddParam("service", "analytics");
-		client.AddHeader("GData-Version", "2");
+		//client.AddParam("service", "analytics");
+		//client.AddHeader("GData-Version", "2");
 
-		try {
+		/*try {
 		    client.Execute(RequestMethod.POST);
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
 
-		String response = client.getResponse();
-		
-		Log.v("DEBUG", response);
+		String response = client.getResponse();*/
+		Reader r = new InputStreamReader(getJSONData("http://wadmanager.lo2k.net/remote/bank/1"));
+		Log.v("debug","oui ok");
+		Log.v("DEBUG", r.toString());
 		
 		Gson gson = new Gson();
 		Type listType = new TypeToken<List<Operation>>() {}.getType();
-		List<Operation> operations = gson.fromJson(response, listType);
+		List<Operation> operations = gson.fromJson(r, listType);
 		
 		Log.v("DEBUG",""+operations.size());
 	}
