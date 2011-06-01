@@ -2,4 +2,9 @@
 <resources>
     <string name="hello">Hello World, AndWadManager!</string>
     <string name="app_name">AndWadManager</string>
+    <string name="Add">Add</string>
+    <string name="Value">Value</string>
+    <string name="Description">Description</string>
+    <string name="Amount">Amount</string>
+    <string name="Save">Save</string>
 </resources>

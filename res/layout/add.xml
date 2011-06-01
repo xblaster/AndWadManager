@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+    <RelativeLayout android:layout_height="match_parent" android:layout_width="wrap_content" android:id="@+id/relativeLayout1">
+        <TextView android:layout_width="wrap_content" android:id="@+id/textView1" android:layout_alignParentLeft="true" android:layout_height="wrap_content" android:text="@string/Amount"></TextView>
+        <EditText android:inputType="number" android:text="" android:layout_below="@+id/textView1" android:layout_height="wrap_content" android:layout_alignLeft="@+id/textView1" android:layout_width="match_parent" android:id="@+id/addoperationAmount"></EditText>
+        <TextView android:layout_width="wrap_content" android:id="@+id/textView2" android:layout_below="@+id/addoperationAmount" android:layout_height="wrap_content" android:layout_alignLeft="@+id/addoperationAmount" android:text="@string/Description"></TextView>
+        <EditText android:text="" android:layout_below="@+id/textView2" android:layout_height="wrap_content" android:layout_alignLeft="@+id/textView2" android:layout_width="match_parent" android:id="@+id/addoperationDesc"></EditText>
+        <Button android:layout_below="@+id/addoperationDesc" android:layout_height="wrap_content" android:layout_alignRight="@+id/addoperationDesc" android:text="@string/Save" android:layout_width="match_parent" android:id="@+id/saveBtn"></Button>
+    </RelativeLayout>
+</LinearLayout>

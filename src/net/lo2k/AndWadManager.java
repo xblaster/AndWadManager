@@ -21,12 +21,24 @@ public class AndWadManager extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        //retrieve
         Button btn = (Button) findViewById(R.id.button1);
         btn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				Intent newIntent = new Intent(getApplicationContext(), ViewDetailsActivity.class);
+				startActivity(newIntent);
+			}
+		});
+        
+        //add activity
+        Button btn2 = (Button) findViewById(R.id.button2);
+        btn2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent newIntent = new Intent(getApplicationContext(), AddActivity.class);
 				startActivity(newIntent);
 			}
 		});

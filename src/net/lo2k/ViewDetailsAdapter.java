@@ -3,6 +3,7 @@ package net.lo2k;
 import java.util.List;
 
 import models.Operation;
+import models.Tag;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -40,9 +41,22 @@ public class ViewDetailsAdapter extends ArrayAdapter<Operation> {
                 ((TextView)view.findViewById(R.id.accountlineName)).setText(name); 
                 ((TextView)view.findViewById(R.id.accountlineComment)).setText(operation.comment);
                 ((TextView)view.findViewById(R.id.accountlineAmount)).setText(""+operation.amount);
+                ((TextView)view.findViewById(R.id.accountlineDate)).setText(operation.date.toLocaleString());
+                
+                String tags = "";
+                if (operation.tags != null) {
+	                for (Tag t : operation.tags) {
+	                	tags+=t.name+", ";
+	                 }
+                }
+                
+                ((TextView)view.findViewById(R.id.accountlineTags)).setText(tags);
+                
                 
                 if (operation.amount < 0) {
                 	((TextView)view.findViewById(R.id.accountlineAmount)).setTextColor(Color.RED);
+                } else {
+                	((TextView)view.findViewById(R.id.accountlineAmount)).setTextColor(Color.GREEN);
                 }
                 
             }

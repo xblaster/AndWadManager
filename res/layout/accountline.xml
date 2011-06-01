@@ -11,8 +11,10 @@
 			android:textSize="12sp"
 			android:textColor="#666"
 			android:layout_below="@+id/accountlineName" android:layout_alignLeft="@+id/accountlineName"></TextView>
+		<TextView android:text="TextView" android:layout_width="wrap_content" android:layout_below="@+id/accountlineComment" android:layout_height="wrap_content" android:layout_alignLeft="@+id/accountlineComment" android:id="@+id/accountlineDate"></TextView>
 		<TextView android:text="TextView" android:layout_width="wrap_content"
 			android:layout_alignParentRight="true" android:layout_height="wrap_content"
 			android:id="@+id/accountlineAmount"></TextView>
+		<TextView android:text="TextView" android:layout_width="wrap_content" android:layout_below="@+id/accountlineAmount" android:layout_height="wrap_content" android:layout_alignRight="@+id/accountlineAmount" android:id="@+id/accountlineTags"></TextView>
 	</RelativeLayout>
 </LinearLayout>

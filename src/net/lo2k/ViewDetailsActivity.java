@@ -55,7 +55,7 @@ public class ViewDetailsActivity extends ListActivity {
 	    }
 	};
 
-	private List<Operation> requestDummy() {
+	/*private List<Operation> requestDummy() {
 		List<Operation> operations = new LinkedList<Operation>();
 		
 		Operation op = new Operation();
@@ -73,7 +73,7 @@ public class ViewDetailsActivity extends ListActivity {
 		operations.add(op);
 		
 		return operations;
-	}
+	}*/
 
 	protected List<Operation> request() {
 		RestClient client = new RestClient(
