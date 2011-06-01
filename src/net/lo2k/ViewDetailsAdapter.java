@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Operation;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,21 @@ public class ViewDetailsAdapter extends ArrayAdapter<Operation> {
             Operation operation = (Operation) getItem(position);
             if (operation != null)
             {
-                TextView item = (TextView)view.findViewById(R.id.accountLineDesc); 
-                item.setText(operation.comment);
-                //tvIem.setText(twit.getTitle()); ==> ligne 33 (c'est la ou cela plante)
+            	
+            	String name = operation.name.trim();
+            	
+            	if (name.length()>20) {
+            		name = name.substring(0, 20);
+            	}
+            	
+                ((TextView)view.findViewById(R.id.accountlineName)).setText(name); 
+                ((TextView)view.findViewById(R.id.accountlineComment)).setText(operation.comment);
+                ((TextView)view.findViewById(R.id.accountlineAmount)).setText(""+operation.amount);
+                
+                if (operation.amount < 0) {
+                	((TextView)view.findViewById(R.id.accountlineAmount)).setTextColor(Color.RED);
+                }
+                
             }
             
          return view;
