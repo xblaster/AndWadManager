@@ -78,13 +78,6 @@ public class ViewDetailsActivity extends ListActivity {
 	protected List<Operation> request() {
 		RestClient client = new RestClient(
 				"http://wadmanager.lo2k.net/remote/bank/1");
-		// RestClient client = new RestClient("http://www.lo2k.net");
-		// client.AddParam("accountType", "GOOGLE");
-		// client.AddParam("source", "tboda-widgalytics-0.1");
-		// client.AddParam("Email", _username);
-		// client.AddParam("Passwd", _password);
-		// client.AddParam("service", "analytics");
-		// client.AddHeader("GData-Version", "2");
 
 		try {
 			client.Execute(RequestMethod.POST);
