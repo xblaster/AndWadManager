@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <TextView android:text="AndWadManager main activity" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-    <Button android:text="Retrieve" android:id="@+id/button1" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/button2" android:text="@string/Add"></Button>
+    <TextView android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/AndWadManagerWelcome" android:textSize="18sp"></TextView>
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/button2" android:text="@string/Add" android:height="90sp"></Button>
+    <Button android:text="Retrieve" android:id="@+id/button1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:height="90sp"></Button>
 </LinearLayout>
