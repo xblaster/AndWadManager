@@ -10,12 +10,14 @@ import models.Operation;
 import net.lo2k.RestClient.RequestMethod;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.net.ParseException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,7 +45,11 @@ public class ViewDetailsActivity extends ListActivity {
 		      public void run() {
 		    	operations = request();
 		  		
-		  		onRequestFinishHandler.sendEmptyMessage(0);
+		    	if (operations != null) {
+		    		onRequestFinishHandler.sendEmptyMessage(0);
+		    	} else {
+		    		
+		    	}
 		      }
 		  })).start();
 	}
@@ -55,26 +61,6 @@ public class ViewDetailsActivity extends ListActivity {
 	    }
 	};
 
-	/*private List<Operation> requestDummy() {
-		List<Operation> operations = new LinkedList<Operation>();
-		
-		Operation op = new Operation();
-		op.amount = 12;
-		op.comment = "plop";
-		op.name = "youhouuu";
-		
-		operations.add(op);
-		
-		op = new Operation();
-		op.amount = -12;
-		op.comment = "plop 2";
-		op.name = "youhouuu 34";
-		
-		operations.add(op);
-		
-		return operations;
-	}*/
-
 	protected List<Operation> request() {
 		RestClient client = new RestClient(
 				"http://wadmanager.lo2k.net/remote/bank/1");
@@ -83,6 +69,18 @@ public class ViewDetailsActivity extends ListActivity {
 			client.Execute(RequestMethod.POST);
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			Context context = getApplicationContext();
+			CharSequence text = "Can't have a connection.\n"+e.toString();
+			int duration = Toast.LENGTH_LONG;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+
+			// critical error 
+			// finish activity
+			finish();
+			return null;
 		}
 
 		String response = client.getResponse();
@@ -91,8 +89,6 @@ public class ViewDetailsActivity extends ListActivity {
 		 * InputStreamReader(getJSONData("http://wadmanager.lo2k.net/remote/bank/1"
 		 * ));
 		 */
-		Log.v("debug", "oui ok");
-		Log.v("DEBUG", response);
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
